@@ -22,6 +22,7 @@ router.route("/create-school").post(async (req, res, next) => {
 router.route("/").get(async (req, res, next) => {
     await studentSchema
         .find()
+        .sort({ _id: -1 })
         .then((result) => {
             res.json({
                 data: result,
