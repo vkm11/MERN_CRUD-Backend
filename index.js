@@ -6,6 +6,7 @@ let bodyParser = require("body-parser");
 const studentRoute = require("./routes/student.routes");
 const schoolRoute = require("./routes/school.routes");
 const userRoute = require("./routes/user.routes");
+const roleRoute = require("./routes/role.routes");
 // Connecting mongoDB Database
 mongoose
     .connect(`mongodb+srv://vijay1111mane:RW7MwYCopPqVokLR@cluster0.r0bfj9v.mongodb.net`)
@@ -28,6 +29,7 @@ app.use(cors());
 app.use("/students", studentRoute);
 app.use("/school", schoolRoute);
 app.use("/user", userRoute);
+app.use("/role", roleRoute);
 // PORT
 const port = process.env.PORT || 4000;
 const server = app.listen(port, () => {
