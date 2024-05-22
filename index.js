@@ -7,6 +7,7 @@ const studentRoute = require("./routes/student.routes");
 const schoolRoute = require("./routes/school.routes");
 const userRoute = require("./routes/user.routes");
 const roleRoute = require("./routes/role.routes");
+const sectionRoute = require("./routes/section.routes");
 // Connecting mongoDB Database
 mongoose
     .connect(`mongodb+srv://vijay1111mane:RW7MwYCopPqVokLR@cluster0.r0bfj9v.mongodb.net`)
@@ -30,6 +31,7 @@ app.use("/students", studentRoute);
 app.use("/school", schoolRoute);
 app.use("/user", userRoute);
 app.use("/role", roleRoute);
+app.use("/section", sectionRoute);
 // PORT
 const port = process.env.PORT || 4000;
 const server = app.listen(port, () => {

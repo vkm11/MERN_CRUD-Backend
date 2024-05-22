@@ -1,16 +1,16 @@
 let mongoose = require("mongoose"),
     express = require("express"),
     router = express.Router();
-// User Model
-let roleSchema = require('../Models/Role');
-// CREATE User
-router.route("/create-role").post(async (req, res, next) => {
-    await roleSchema
+// Section Model
+let sectionSchema = require('../Models/Section');
+// CREATE Section
+router.route("/create-section").post(async (req, res, next) => {
+    await sectionSchema
         .create(req.body)
         .then((result) => {
             res.json({
                 data: result,
-                message: "Role added successfully!",
+                message: "Section added successfully!",
                 status: 200,
             });
         })
@@ -18,9 +18,8 @@ router.route("/create-role").post(async (req, res, next) => {
             return next(err);
         });
 });
-// Read User
 router.route("/").get(async (req, res, next) => {
-    await roleSchema
+    await sectionSchema
         .find()
         .sort({ _id: -1 })
         .then((result) => {
@@ -34,14 +33,14 @@ router.route("/").get(async (req, res, next) => {
             return next(err);
         });
 });
-// Get Single User
-router.route("/get-role/:id").get(async (req, res, next) => {
-    await roleSchema
+// Get Single Section
+router.route("/get-section/:id").get(async (req, res, next) => {
+    await sectionSchema
         .findById(req.params.id)
         .then((result) => {
             res.json({
                 data: result,
-                message: "Role successfully fetched.",
+                message: "Section successfully fetched.",
                 status: 200,
             });
         })
@@ -49,9 +48,9 @@ router.route("/get-role/:id").get(async (req, res, next) => {
             return next(err);
         });
 });
-// Update User
-router.route("/update-role/:id").put(async (req, res, next) => {
-    await roleSchema
+// Update
+router.route("/update-section/:id").put(async (req, res, next) => {
+    await sectionSchema
         .findByIdAndUpdate(req.params.id, {
             $set: req.body,
         })
@@ -59,20 +58,19 @@ router.route("/update-role/:id").put(async (req, res, next) => {
             console.log(result);
             res.json({
                 data: result,
-                msg: "Role successfully updated.",
+                msg: "Section successfully updated.",
             });
         })
         .catch((err) => {
             console.log(err);
         });
 });
-// Delete User
-router.route("/delete-role/:id").delete(async (req, res, next) => {
-    await roleSchema
+router.route("/delete-section/:id").delete(async (req, res, next) => {
+    await sectionSchema
         .findByIdAndDelete(req.params.id)
         .then(() => {
             res.json({
-                msg: "Role successfully Deleted.",
+                msg: "Section successfully Deleted.",
             });
         })
         .catch((err) => {
