@@ -66,4 +66,16 @@ router.route("/update-parent/:id").put(async (req, res, next) => {
             console.log(err);
         });
 });
+router.route("/delete-parent/:id").delete(async (req, res, next) => {
+    await parentSchema
+        .findByIdAndDelete(req.params.id)
+        .then(() => {
+            res.json({
+                msg: "Parent successfully Deleted.",
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
 module.exports = router;

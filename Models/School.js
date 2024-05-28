@@ -2,13 +2,21 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 let studentSchema = new Schema({
     name: {
-        type: String
+        type: String,
+        required: true
     },
     class: {
-        type: String
+        type: String,
+        required: true
     },
     desc: {
-        type: String
+        type: String,
+        required: false
+    },
+    startdate:{
+        type: Date,
+        // default: Date.now, 
+        required: true
     },
 }, {
     collection: 'school'
