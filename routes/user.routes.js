@@ -72,7 +72,7 @@ router.route("/delete-user/:id").delete(async (req, res, next) => {
         .findByIdAndDelete(req.params.id)
         .then(() => {
             res.json({
-                msg: "Data successfully updated.",
+                msg: "Data successfully deleted.",
             });
         })
         .catch((err) => {
