@@ -18,6 +18,9 @@ let studentSchema = new Schema({
         // default: Date.now, 
         required: true
     },
+    status:{
+        type: Number,
+    }
 }, {
     collection: 'school'
 })

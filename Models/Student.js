@@ -10,6 +10,9 @@ let studentSchema = new Schema({
     rollno: {
         type: Number
     },
+    status: {
+        type: Number
+    }
 }, {
     collection: 'students'
 })
