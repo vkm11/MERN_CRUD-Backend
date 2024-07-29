@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -9,6 +11,7 @@ const roleRoute = require('./routes/role.routes');
 const sectionRoute = require('./routes/section.routes');
 const parentRoute = require('./routes/parent.routes');
 const teacherRoute = require('./routes/teacher.routes');
+const authRoutes = require('./routes/auth.routes')
 
 const app = express();
 
@@ -21,6 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 // Routes
+app.use('/auth', authRoutes);
 app.use('/students', studentRoute);
 app.use('/school', schoolRoute);
 app.use('/user', userRoute);
@@ -34,6 +38,7 @@ const port = process.env.PORT || 4000;
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+
 
 // 404 Error
 app.use((req, res, next) => {
