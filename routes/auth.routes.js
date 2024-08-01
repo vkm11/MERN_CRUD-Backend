@@ -65,21 +65,22 @@ router.post('/login', async (req, res) => {
         if (role) {
             const roleNumber = parseInt(role, 10);
             if (user.role !== roleNumber) {
-                return res.status(403).json({ msg: 'Access denied' });
+                return res.status(403).json({ msg: 'Access denied please check the role' });
             }
         }
 
-        // Return JSON Web Token
-        const payload = { user: { id: user.id } };
+        // Return JSON Web Token and role
+        const payload = { user: { id: user.id, name: user.name, role: user.role } };
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '5m' });
 
-        res.json({ token });
+        res.json({ token, name: user.name, role: user.role });
 
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server error');
     }
 });
+
 
 router.get('/verify-token', (req, res) => {
     const token = req.headers['authorization']?.split(' ')[1];
